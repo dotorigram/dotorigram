@@ -4,7 +4,7 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { TbMessageCircle2 } from 'react-icons/tb';
 const FeedContent = () => {
   return (
-    <div>
+    <div className='mx-3'>
       <div>
         <button>
           <AiOutlineHeart className='text-xl' />

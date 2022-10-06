@@ -4,7 +4,7 @@ import FeedContent from './FeedContent';
 const FeedList = () => {
   return (
     <div>
-      <div className='flex justify-around'>
+      <div className='flex justify-around  mx-3'>
         <h2 className='basis-1/8'>아이콘</h2>
         <div className='basis-1/2'>닉네임</div>
         <div className='flex justify-around basis-1/3'>

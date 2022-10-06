@@ -3,7 +3,7 @@ import { AiOutlineHeart } from 'react-icons/ai';
 
 const TopNavbar = () => {
   return (
-    <div className='flex justify-between'>
+    <div className='flex justify-between  mx-3'>
       <div>
         <h1>
           <img src={require('../../static/img/dotorigram_logo.png')} alt='dotorigram' className='w-28 basis-1/6' />
