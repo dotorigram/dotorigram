@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import FileUpload from '../components/contents/FileUpload';
+import { useDispatch } from 'react-redux';
+
 function ContentUpload() {
+  // 미리보기
+  const [imageSrc, setImageSrc] = useState('');
+  const onImgInputBtnClick = (e) => {
+    e.preventDefault();
+    logoImgInput.current.click();
+  };
+  const logoImgInput = useRef();
+  const encodeFileToBase64 = (fileBlob) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(fileBlob);
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setImageSrc(reader.result);
+        resolve();
+      };
+    });
+  };
+
   return (
     <div className='mx-auto max-w-470'>
       <div className='flex justify-between mt-2'>
@@ -13,7 +32,10 @@ function ContentUpload() {
           <span className='text-blue-500 font-bold mr-5'>공유하기</span>
         </button>
       </div>
-      {/* <img src={require('../static/img/feed_img.jpg')} className='w-100 h-100 m-auto mt-2 w-full' alt='img' /> */}
+
+      <input type='file' accept='image/*' className='hidden' onChange={(e) => encodeFileToBase64(e.target.files[0])} ref={logoImgInput} />
+      <button onClick={onImgInputBtnClick}>사진업로드</button>
+      <div>{imageSrc && <img src={imageSrc} alt='' className='w-screen' />}</div>
       <textarea className='outline-none w-full h-96 text-xl placeholder:text-base' placeholder='문구 입력...'></textarea>
     </div>
   );
