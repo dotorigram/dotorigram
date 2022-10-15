@@ -32,18 +32,22 @@ const Register = () => {
   const navigate = useNavigate();
 
   const signup = async () => {
+    const id = id_ref.current.value;
+    const nick = name_ref.current.value;
+    //Auth
     const user = await createUserWithEmailAndPassword(
       auth,
       id_ref.current.value,
       pw_ref.current.value
     );
-    console.log(user);
-
+    // console.log(user);
+    
+    //database
     const user_doc = await addDoc(collection(db, 'users'), {
-      user_id: user.user.email,
-      name: name_ref.current.value,
+      user_id: id,
+      name: nick,
     });
-    console.log(user_doc.id);
+    // console.log(user_doc.id);
   };
 
   const handleSubmit = (event) => {
