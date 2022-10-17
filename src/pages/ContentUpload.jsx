@@ -23,25 +23,24 @@ function ContentUpload() {
 
   return (
     <div className='mx-auto max-w-470'>
-      <div className='flex justify-center mt-2 border-b'>
-        <div className='mb-2 font-bold'>
+      <div className='flex justify-center mt-2 border-b bg-white'>
+        <div className='mb-2 font-bold z-10'>
           새 게시물 만들기
           {/* <span className='absolute'>공유하기</span> */}
-          {/* 공유하기 버튼이 필요한데 말이죠.. */}
         </div>
       </div>
-      <div className='flex justify-center h-96 flex-col items-center gap-y-2'>
-        <div className=' w-80 h-80'>
+      <div className='flex justify-center flex-col items-center gap-y-2'>
+        <div className='flex justify-center'>
           {imageSrc ? (
-            <div>
-              <img className='h-45' src={imageSrc} alt='' />
+            <div className='flex justify-center flex-col items-center'>
+              <img className='h-96 mb-2 overflow-hidden' src={imageSrc} alt='' />
               <button className='font-semibold text-white bg-blue-500 rounded w-32 h-8' onClick={onImgInputBtnClick}>
-                컴퓨터에서 선택
+                다른 사진 업로드
               </button>
             </div>
           ) : (
-            <div>
-              <img className='w-20 h-18' src={require('../static/img/addPost.PNG')} alt='img' />
+            <div className='flex justify-center flex-col items-center p-20 '>
+              <img src={require('../static/img/addPost.PNG')} alt='img' />
               <h1 margin='20px' F_size='22px'>
                 버튼을 눌러 사진을 추가하세요
               </h1>
@@ -53,7 +52,7 @@ function ContentUpload() {
         </div>
         <input type='file' accept='image/*' className='hidden' onChange={(e) => encodeFileToBase64(e.target.files[0])} ref={logoImgInput} />
       </div>
-      <textarea className='outline-none w-full h-96 text-xl placeholder:text-base' placeholder='문구 입력...'></textarea>
+      <textarea className='w-full h-40 text-xl placeholder:text-base' placeholder='문구 입력...'></textarea>
     </div>
   );
 }
