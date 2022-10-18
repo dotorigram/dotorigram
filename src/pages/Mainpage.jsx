@@ -5,15 +5,22 @@ import BottomNavbar from '../components/main/BottomNavbar';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {getAccessToken} from '../shared/Cookie';
+import {auth, db} from '../firebase/firebase';
+import {firebase} from 'firebase/auth';
+
 const Mainpage = ({ id }) => {
   const navigation = useNavigate()
   const userData = useSelector(state => state.user)
   useEffect(()=>{
     if(userData === ''){
-      navigation('/login');
+      if(getAccessToken()){
+
+      }else{
+        navigation('/login');
+      }
     }
   },[])
-  console.log("쿠키 값 ::",getAccessToken());
+
   return (
     <div>
       <TopNavbar />

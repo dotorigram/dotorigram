@@ -145,7 +145,7 @@ const Register = () => {
             <input
               className="w-[16.875rem] bg-[#fafafa] mb-[5px] pt-3.5 pr-0 py-0.5 px-2 border-[1px] border-slate-300 rounded-[5px]"
               type="text"
-              placeholder="성명"
+              placeholder="닉네임"
               ref={name_ref}
               onChange={onChangeName}
             /><br />
