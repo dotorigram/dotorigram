@@ -10,6 +10,7 @@ import {getDocs, where, query, collection} from 'firebase/firestore';
 import { useCookies } from 'react-cookie';
 import { setAccessToken } from '../shared/Cookie';
 
+
 const Login = ({setAuthenticate}) => {
 
   const [id, setId] = useState('');
@@ -30,6 +31,9 @@ const Login = ({setAuthenticate}) => {
     //Auth
     try{
       user = await signInWithEmailAndPassword(auth, id_ref.current.value, pw_ref.current.value);
+      const token = await auth.currentUser?.getIdToken()
+      // const test = auth.
+      setAccessToken(token);
       console.log(user);
     }
     catch {
@@ -48,10 +52,8 @@ const Login = ({setAuthenticate}) => {
         userData = u.data();
       })
 
-
       dispatch({ type: 'USER_NAME', payload: { id ,nick : userData.name } });
-      //token 쿠키에 저장하기
-      setAccessToken("토큰 넣는 자리");
+      
       setAuthenticate(true);
       navigate('/');
   };

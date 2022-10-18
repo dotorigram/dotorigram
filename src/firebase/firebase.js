@@ -12,6 +12,7 @@ const firebaseConfig = {
   messagingSenderId: '840690280564',
   appId: '1:840690280564:web:0931dc4ef0f56a3e71c921',
   measurementId: 'G-RH78R356N2',
+  serviceAccountId: 'my-client-id@my-project-id.iam.gserviceaccount.com',
 };
 
 // Initialize Firebase
