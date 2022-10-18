@@ -5,6 +5,7 @@ import BottomNavbar from '../components/main/BottomNavbar';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {getAccessToken} from '../shared/Cookie';
+
 const Mainpage = ({ id }) => {
   const navigation = useNavigate()
   const userData = useSelector(state => state.user)
