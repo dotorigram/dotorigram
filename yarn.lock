@@ -6299,7 +6299,7 @@
   "resolved" "https://registry.npmjs.org/immediate/-/immediate-3.0.6.tgz"
   "version" "3.0.6"
 
-"immer@^9.0.7":
+"immer@^9.0.15", "immer@^9.0.7":
   "integrity" "sha512-2eB/sswms9AEUSkOm4SbV5Y7Vmt/bKRwByd52jfLkW4OLYeaTP3EEiJ9agqU0O/tq6Dk62Zfj+TJSqfm1rLVGQ=="
   "resolved" "https://registry.npmjs.org/immer/-/immer-9.0.15.tgz"
   "version" "9.0.15"
@@ -6371,6 +6371,13 @@
     "get-intrinsic" "^1.1.0"
     "has" "^1.0.3"
     "side-channel" "^1.0.4"
+
+"invariant@^2.2.4":
+  "integrity" "sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA=="
+  "resolved" "https://registry.npmjs.org/invariant/-/invariant-2.2.4.tgz"
+  "version" "2.2.4"
+  dependencies:
+    "loose-envify" "^1.0.0"
 
 "ipaddr.js@^2.0.1":
   "integrity" "sha512-1qTgH9NG+IIJ4yfKs2e6Pp1bZg8wbDbKHT21HrLIeYBTRLgMYKnMTPAuI3Lcs61nfx5h1xlXnbJtH1kX5/d/ng=="
@@ -7444,6 +7451,11 @@
     "readable-stream" "~2.3.6"
     "setimmediate" "^1.0.5"
 
+"just-curry-it@^3.1.0":
+  "integrity" "sha512-Q8206k8pTY7krW32cdmPsP+DqqLgWx/hYPSj9/+7SYqSqz7UuwPbfSe07lQtvuuaVyiSJveXk0E5RydOuWwsEg=="
+  "resolved" "https://registry.npmjs.org/just-curry-it/-/just-curry-it-3.2.1.tgz"
+  "version" "3.2.1"
+
 "jwa@^1.4.1":
   "integrity" "sha512-qiLX/xhEEFKUAJ6FiBMbes3w9ATzyk5W7Hvzpa/SLYdxNtng+gcurvrI7TbACjIXlsJyr05/S1oUhZrc63evQA=="
   "resolved" "https://registry.npmjs.org/jwa/-/jwa-1.4.1.tgz"
@@ -7724,7 +7736,7 @@
   "resolved" "https://registry.npmjs.org/long/-/long-5.2.0.tgz"
   "version" "5.2.0"
 
-"loose-envify@^1.1.0", "loose-envify@^1.4.0":
+"loose-envify@^1.0.0", "loose-envify@^1.1.0", "loose-envify@^1.4.0":
   "integrity" "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q=="
   "resolved" "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz"
   "version" "1.4.0"
@@ -9601,6 +9613,22 @@
     "indent-string" "^4.0.0"
     "strip-indent" "^3.0.0"
 
+"reduce-reducers@^0.4.3":
+  "integrity" "sha512-+CNMnI8QhgVMtAt54uQs3kUxC3Sybpa7Y63HR14uGLgI9/QR5ggHvpxwhGGe3wmx5V91YwqQIblN9k5lspAmGw=="
+  "resolved" "https://registry.npmjs.org/reduce-reducers/-/reduce-reducers-0.4.3.tgz"
+  "version" "0.4.3"
+
+"redux-actions@^2.6.5":
+  "integrity" "sha512-pFhEcWFTYNk7DhQgxMGnbsB1H2glqhQJRQrtPb96kD3hWiZRzXHwwmFPswg6V2MjraXRXWNmuP9P84tvdLAJmw=="
+  "resolved" "https://registry.npmjs.org/redux-actions/-/redux-actions-2.6.5.tgz"
+  "version" "2.6.5"
+  dependencies:
+    "invariant" "^2.2.4"
+    "just-curry-it" "^3.1.0"
+    "loose-envify" "^1.4.0"
+    "reduce-reducers" "^0.4.3"
+    "to-camel-case" "^1.0.0"
+
 "redux-thunk@^2.4.1":
   "integrity" "sha512-OOYGNY5Jy2TWvTL1KgAlVy6dcx3siPJ1wTq741EPyUKfn6W6nChdICjZwCd0p8AZBs5kWpZlbkXW2nE/zjUa+Q=="
   "resolved" "https://registry.npmjs.org/redux-thunk/-/redux-thunk-2.4.1.tgz"
@@ -10714,10 +10742,22 @@
   "resolved" "https://registry.npmjs.org/tmpl/-/tmpl-1.0.5.tgz"
   "version" "1.0.5"
 
+"to-camel-case@^1.0.0":
+  "integrity" "sha512-nD8pQi5H34kyu1QDMFjzEIYqk0xa9Alt6ZfrdEMuHCFOfTLhDG5pgTu/aAM9Wt9lXILwlXmWP43b8sav0GNE8Q=="
+  "resolved" "https://registry.npmjs.org/to-camel-case/-/to-camel-case-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "to-space-case" "^1.0.0"
+
 "to-fast-properties@^2.0.0":
   "integrity" "sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog=="
   "resolved" "https://registry.npmjs.org/to-fast-properties/-/to-fast-properties-2.0.0.tgz"
   "version" "2.0.0"
+
+"to-no-case@^1.0.0":
+  "integrity" "sha512-Z3g735FxuZY8rodxV4gH7LxClE4H0hTIyHNIHdk+vpQxjLm0cwnKXq/OFVZ76SOQmto7txVcwSCwkU5kqp+FKg=="
+  "resolved" "https://registry.npmjs.org/to-no-case/-/to-no-case-1.0.2.tgz"
+  "version" "1.0.2"
 
 "to-readable-stream@^1.0.0":
   "integrity" "sha512-Iq25XBt6zD5npPhlLVXGFN3/gyR2/qODcKNNyTMd4vbm39HUaOiAM4PMq0eMVC/Tkxz+Zjdsc55g9yyz+Yq00Q=="
@@ -10730,6 +10770,13 @@
   "version" "5.0.1"
   dependencies:
     "is-number" "^7.0.0"
+
+"to-space-case@^1.0.0":
+  "integrity" "sha512-rLdvwXZ39VOn1IxGL3V6ZstoTbwLRckQmn/U8ZDLuWwIXNpuZDhQ3AiRUlhTbOXFVE9C+dR51wM0CBDhk31VcA=="
+  "resolved" "https://registry.npmjs.org/to-space-case/-/to-space-case-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "to-no-case" "^1.0.0"
 
 "toidentifier@1.0.1":
   "integrity" "sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA=="

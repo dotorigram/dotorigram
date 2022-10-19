@@ -20,7 +20,7 @@ const Mainpage = ({ id }) => {
       }
     }
   },[])
-
+  console.log(userData);
   return (
     <div>
       <TopNavbar />

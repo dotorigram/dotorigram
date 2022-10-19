@@ -3,16 +3,15 @@ import axios from 'axios';
 import logo from '../static/img/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import {auth, db} from '../firebase/firebase';
 import {signInWithEmailAndPassword} from 'firebase/auth';
 import {getDocs, where, query, collection} from 'firebase/firestore';
 import { useCookies } from 'react-cookie';
 import { setAccessToken } from '../shared/Cookie';
-
+import {userLogin} from '../redux/reducer/user'
 
 const Login = ({setAuthenticate}) => {
-
   const [id, setId] = useState('');
   //const [password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -20,7 +19,6 @@ const Login = ({setAuthenticate}) => {
 
   const id_ref = useRef(null);
   const pw_ref = useRef(null);
-
 
   const submitId = async (e) => {
     e.preventDefault();
@@ -52,7 +50,7 @@ const Login = ({setAuthenticate}) => {
         userData = u.data();
       })
 
-      dispatch({ type: 'USER_NAME', payload: { id ,nick : userData.name } });
+      dispatch(userLogin(userData));
       
       setAuthenticate(true);
       navigate('/');
