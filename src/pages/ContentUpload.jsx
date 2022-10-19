@@ -2,8 +2,10 @@ import React, { useCallback, useRef, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch } from "react-redux";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import { useNavigate } from "react-router-dom";
 
 function ContentUpload() {
+  const navigate = useNavigate();
   // 미리보기
   const [imageSrc, setImageSrc] = useState("");
   const onImgInputBtnClick = (e) => {
@@ -25,7 +27,7 @@ function ContentUpload() {
   return (
     <div className="mx-auto max-w-470">
       <div className="flex justify-between mt-2 border-b bg-white">
-        <button>
+        <button onClick={() => navigate("/")}>
           <KeyboardBackspaceIcon className="mb-2" />
         </button>
         <div className="mb-2 font-bold z-10">새 게시물 만들기</div>
