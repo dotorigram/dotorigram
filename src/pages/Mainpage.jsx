@@ -14,7 +14,7 @@ const Mainpage = ({ id }) => {
   useEffect(()=>{
     if(userData === ''){
       if(getAccessToken()){
-
+        
       }else{
         navigation('/login');
       }

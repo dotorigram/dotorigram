@@ -1,8 +1,13 @@
+import { useContext } from 'react';
 import React from 'react';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
+import AuthContext from '../../store/auth-context';
 import { useNavigate } from 'react-router-dom';
 
 const TopNavbar = () => {
+  const authCtx = useContext(AuthContext);
+
+  const isLoggedIn = authCtx.isLoggedIn;
   const navigate = useNavigate();
 
   return (
