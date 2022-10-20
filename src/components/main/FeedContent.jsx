@@ -3,7 +3,7 @@ import React from 'react';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineRounded';
 
-const FeedContent = () => {
+const FeedContent = ({ post }) => {
   return (
     <div className='mx-3'>
       <div className='mt-2'>
@@ -14,13 +14,10 @@ const FeedContent = () => {
           <ChatBubbleOutlineRoundedIcon className='text-xl' />
         </button>
       </div>
-      <div className='mt-2 font-bold'>좋아요 3,690,234개</div>
+      <div className='mt-2 font-bold'>좋아요 {post?.likeAmount}개</div>
       <div className='my-2'>
-        <div className='font-bold inline-block float-left mr-2'>strongrabbit</div>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae ea sapiente sunt quo, velit ratione error mollitia. Libero cupiditate aliquam provident commodi sapiente veritatis excepturi.
-          Ducimus quasi aperiam saepe ea.
-        </div>
+        <div className='font-bold inline-block float-left mr-2'>{post?.user}</div>
+        <div>{post?.body}</div>
       </div>
     </div>
   );

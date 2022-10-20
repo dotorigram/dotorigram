@@ -7,14 +7,16 @@ import BottomNavbar from '../components/main/BottomNavbar';
 
 function CommentsBox() {
   return (
-    <div className='max-w-470'>
-      <div className='ml-5 mt-3 flex'>
-        <ArrowBackIcon />
-        <p className='ml-40 font-bold mb-3'>댓글</p>
+    <div>
+      <div className='max-w-470 m-auto'>
+        <div className='ml-5 mt-3 flex'>
+          <ArrowBackIcon />
+          <p className='ml-40 font-bold mb-3'>댓글</p>
+        </div>
+        <CommentInput />
+        {/* <Content /> */}
+        <CommentsList />
       </div>
-      <CommentInput />
-      <Content />
-      <CommentsList />
       <BottomNavbar />
     </div>
   );

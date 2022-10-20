@@ -1,12 +1,15 @@
-import { createStore,combineReducers,applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+// modules
+import postReducer from './reducer/modules/postReducer';
+import userReducer from './reducer/modules/userReducer';
 
-import user from './reducer/user'
+const rootReducer = combineReducers({
+  post: postReducer,
+  user: userReducer,
+});
 
-const middle = [thunk];
-const root = combineReducers({
-    user,
-})
-const enhancer = applyMiddleware(...middle);
-let store = createStore(root,enhancer);
+const store = configureStore({
+  reducer: rootReducer,
+});
+
 export default store;
