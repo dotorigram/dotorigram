@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import BottomNavbar from '../components/main/BottomNavbar';
 import TopNavbar from '../components/main/TopNavbar';
 import PostList from '../components/mypage/PostList';

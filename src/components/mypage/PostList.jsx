@@ -20,16 +20,10 @@ const PostList = () => {
           <div className='font-bold'>0</div>
         </div>
       </div>
-      <div className='inline-grid grid-cols-3 gap-1'>
-        <ContentPhoto />
-        <ContentPhoto />
-        <ContentPhoto />
-        <ContentPhoto />
-        <ContentPhoto />
-        <ContentPhoto />
-        <ContentPhoto />
-        <ContentPhoto />
-        <ContentPhoto />
+      <div className='border-2'>
+        <div className='inline-grid grid-cols-3 gap-1 border-2'>
+          <ContentPhoto />
+        </div>
       </div>
     </div>
   );

@@ -1,10 +1,44 @@
-import React, { useCallback, useRef, useState } from 'react';
-import CloseIcon from '@mui/icons-material/Close';
-import { useDispatch } from 'react-redux';
+import React, { useCallback, useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import useInput from '../components/hooks/useInput';
+import { clearPost, addPost } from '../redux/reducer/modules/postReducer';
+// import CloseIcon from '@mui/icons-material/Close';
 
 function ContentUpload() {
-  // 미리보기
-  const [imageSrc, setImageSrc] = useState('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const isSuccess = useSelector((state) => state.post.isSuccess);
+  // const user = useSelector((state) => state.user);
+
+  const [img, setImg, onChangeImgHandler] = useInput();
+  const [body, setBody, onChangeBodyHandler] = useInput();
+  useEffect(() => {
+    if (!isSuccess) return;
+    if (isSuccess) navigate('/');
+
+    return () => dispatch(clearPost());
+  }, [dispatch, isSuccess, navigate]);
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+
+    dispatch(
+      addPost({
+        img,
+        like: false,
+        likeAmount: 0,
+        user: `${user.user}`,
+        body,
+      })
+    );
+    setImg('');
+    setBody('');
+    navigate('/');
+  };
+
+  // 이미지 미리보기
   const onImgInputBtnClick = (e) => {
     e.preventDefault();
     logoImgInput.current.click();
@@ -15,7 +49,7 @@ function ContentUpload() {
     reader.readAsDataURL(fileBlob);
     return new Promise((resolve) => {
       reader.onload = () => {
-        setImageSrc(reader.result);
+        setImg(reader.result);
         resolve();
       };
     });
@@ -23,36 +57,37 @@ function ContentUpload() {
 
   return (
     <div className='mx-auto max-w-470'>
-      <div className='flex justify-center mt-2 border-b bg-white'>
-        <div className='mb-2 font-bold z-10'>
-          새 게시물 만들기
-          {/* <span className='absolute'>공유하기</span> */}
+      <form onSubmit={onSubmitHandler}>
+        <div className='flex justify-center mt-2 border-b bg-white'>
+          <div className='mb-2 font-bold z-10'>
+            새 게시물 만들기
+            {/* <span className='absolute'>공유하기</span> */}
+          </div>
         </div>
-      </div>
-      <div className='flex justify-center flex-col items-center gap-y-2'>
-        <div className='flex justify-center'>
-          {imageSrc ? (
-            <div className='flex justify-center flex-col items-center'>
-              <img className='h-96 mb-2 overflow-hidden' src={imageSrc} alt='' />
-              <button className='font-semibold text-white bg-blue-500 rounded w-32 h-8' onClick={onImgInputBtnClick}>
-                다른 사진 업로드
-              </button>
-            </div>
-          ) : (
-            <div className='flex justify-center flex-col items-center p-20 '>
-              <img src={require('../static/img/addPost.PNG')} alt='img' />
-              <h1 margin='20px' F_size='22px'>
-                버튼을 눌러 사진을 추가하세요
-              </h1>
-              <button className='font-semibold text-white bg-blue-500 rounded w-32 h-8' onClick={onImgInputBtnClick}>
-                컴퓨터에서 선택
-              </button>
-            </div>
-          )}
+        <div className='flex justify-center flex-col items-center gap-y-2'>
+          <div className='flex justify-center'>
+            {img ? (
+              <div className='flex justify-center flex-col items-center'>
+                <img className='h-96 mb-2 overflow-hidden' src={img} alt='' value={img} name='img' onChange={onChangeImgHandler} />
+                <button className='font-semibold text-white bg-blue-500 rounded w-32 h-8' onClick={onImgInputBtnClick} type='button'>
+                  다른 사진 업로드
+                </button>
+              </div>
+            ) : (
+              <div className='flex justify-center flex-col items-center p-20 '>
+                <img src={require('../static/img/addPost.PNG')} alt='img' />
+                <h1 margin='20px'>버튼을 눌러 사진을 추가하세요</h1>
+                <button className='font-semibold text-white bg-blue-500 rounded w-32 h-8' onClick={onImgInputBtnClick} type='button'>
+                  컴퓨터에서 선택
+                </button>
+              </div>
+            )}
+          </div>
+          <input type='file' accept='image/*' className='hidden' onChange={(e) => encodeFileToBase64(e.target.files[0])} ref={logoImgInput} />
         </div>
-        <input type='file' accept='image/*' className='hidden' onChange={(e) => encodeFileToBase64(e.target.files[0])} ref={logoImgInput} />
-      </div>
-      <textarea className='w-full h-40 text-xl placeholder:text-base' placeholder='문구 입력...'></textarea>
+        <textarea type='text' className='w-full h-40 text-xl placeholder:text-base' placeholder='문구 입력...' value={body} name='body' onChange={onChangeBodyHandler}></textarea>
+        <button>공유하기</button>
+      </form>
     </div>
   );
 }

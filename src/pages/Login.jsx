@@ -4,14 +4,14 @@ import logo from '../static/img/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {auth, db} from '../firebase/firebase';
-import {signInWithEmailAndPassword} from 'firebase/auth';
-import {getDocs, where, query, collection} from 'firebase/firestore';
+import { auth, db } from '../firebase/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { getDocs, where, query, collection } from 'firebase/firestore';
 import { useCookies } from 'react-cookie';
 import { setAccessToken } from '../shared/Cookie';
+import { getUserId } from '../redux/reducer/modules/userReducer';
 
-const Login = ({setAuthenticate}) => {
-
+const Login = ({ setAuthenticate }) => {
   const [id, setId] = useState('');
   //const [password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -20,40 +20,34 @@ const Login = ({setAuthenticate}) => {
   const id_ref = useRef(null);
   const pw_ref = useRef(null);
 
-
   const submitId = async (e) => {
     e.preventDefault();
     let user = {};
     console.log(id_ref.current.value, pw_ref.current.value);
-    
 
     //Auth
-    try{
+    try {
       user = await signInWithEmailAndPassword(auth, id_ref.current.value, pw_ref.current.value);
       console.log(user);
+    } catch {
+      console.log('로그인이 실패하였습니다...');
+      return;
     }
-    catch {
-      console.log("로그인이 실패하였습니다...");
-      return
-    }
 
+    let userData = {};
+    //database
+    const user_docs = await getDocs(query(collection(db, 'users'), where('user_id', '==', user.user.email)));
+    // console.log("getdocData : ",user_docs.data());
+    user_docs.forEach((u) => {
+      userData = u.data();
+    });
 
-      let userData ={};
-      //database
-      const user_docs = await getDocs(query(
-          collection(db, "users"), where("user_id", "==", user.user.email)
-      ));
-      // console.log("getdocData : ",user_docs.data());
-      user_docs.forEach(u => {
-        userData = u.data();
-      })
-
-
-      dispatch({ type: 'USER_NAME', payload: { id ,nick : userData.name } });
-      //token 쿠키에 저장하기
-      setAccessToken("토큰 넣는 자리");
-      setAuthenticate(true);
-      navigate('/');
+    // dispatch({ type: 'USER_NAME', payload: { id, nick: userData.name } });
+    dispatch(getUserId(userData.name));
+    //token 쿠키에 저장하기
+    setAccessToken('토큰 넣는 자리');
+    setAuthenticate(true);
+    navigate('/');
   };
   return (
     <div className='flex flex-col h-screen justify-center items-center'>
@@ -77,7 +71,9 @@ const Login = ({setAuthenticate}) => {
             required
             ref={pw_ref}
           />
-          <button className='w-[16.875rem] mx-auto py-1 bg-[#0095f6] text-white h-4.5 rounded-[5px]' type='submit' id='logins'>로그인</button>
+          <button className='w-[16.875rem] mx-auto py-1 bg-[#0095f6] text-white h-4.5 rounded-[5px]' type='submit' id='logins'>
+            로그인
+          </button>
         </form>
         <span className='block text-center'>
           계정이 없으신가요?

@@ -25,7 +25,7 @@ const BottomNavbar = () => {
         {/* <button onClick={() => navigate('/contentupload')}> */}
         {/* <button onClick={uploadModal}> */}
         <button>
-          <AddBoxOutlinedIcon />
+          <AddBoxOutlinedIcon onClick={() => navigate('/contentupload')} />
         </button>
         <button onClick={() => navigate('/mypage')}>
           <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
