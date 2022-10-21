@@ -1,22 +1,25 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
-  apiKey: 'AIzaSyBhaRiJhGfdOsjoSrFPUIHuRssdvW6NaAA',
-  authDomain: 'instagram-490bd.firebaseapp.com',
-  projectId: 'instagram-490bd',
-  storageBucket: 'instagram-490bd.appspot.com',
-  messagingSenderId: '840690280564',
-  appId: '1:840690280564:web:0931dc4ef0f56a3e71c921',
-  measurementId: 'G-RH78R356N2',
-  serviceAccountId: 'my-client-id@my-project-id.iam.gserviceaccount.com',
+  apiKey: "AIzaSyAiyykF8ddk7Nj-9n7_vWOSTiwfPMfI8_8",
+  authDomain: "dotorigram-49dcf.firebaseapp.com",
+  projectId: "dotorigram-49dcf",
+  storageBucket: "dotorigram-49dcf.appspot.com",
+  messagingSenderId: "327763183414",
+  appId: "1:327763183414:web:dbfe26da3fe266ea1e1597",
+  measurementId: "G-CFXPGETBDB",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Cloud Storage and get a reference to the service
+export const storage = getStorage(app);
 
 //인증 및 앱 초기화
 
