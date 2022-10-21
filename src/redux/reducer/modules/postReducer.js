@@ -5,7 +5,11 @@ import axios from 'axios';
 export const getPost = createAsyncThunk('post/getPost', async (_, thunkAPI) => {
   try {
     const { data } = await axios.get('http://localhost:3001/post');
-    return thunkAPI.fulfillWithValue(data);
+    const posts = [];
+    // data.map((v) => {
+    //   posts.unshift(v);
+    // });
+    return thunkAPI.fulfillWithValue(data.reverse());
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
   }
@@ -50,7 +54,7 @@ const postSlice = createSlice({
     [addPost.fulfilled]: (state, action) => {
       state.isSuccess = true;
       state.isLoading = false;
-      state.post.push(action.payload);
+      state.post.unshift(action.payload);
     },
     [addPost.rejected]: (state, action) => {
       state.isLoading = false;

@@ -9,7 +9,7 @@ import { getAccessToken } from '../shared/Cookie';
 // import {firebase} from 'firebase/auth';
 import { getPost } from '../redux/reducer/modules/postReducer';
 
-const Mainpage = ({ id }) => {
+const Mainpage = () => {
   const navigation = useNavigate();
   const dispatch = useDispatch();
 
