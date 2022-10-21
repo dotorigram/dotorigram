@@ -13,7 +13,7 @@ import { query, getDocs, orderBy, collection } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
-const Mainpage = ({ id }) => {
+const Mainpage = () => {
   const navigation = useNavigate();
   const dispatch = useDispatch();
 
