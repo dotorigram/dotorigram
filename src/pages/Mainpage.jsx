@@ -17,17 +17,6 @@ const Mainpage = ({ id }) => {
   const navigation = useNavigate();
   const dispatch = useDispatch();
 
-  // const postCollectionRef = collection(db, "posts");
-
-  // const docRef = doc(db, "posts");
-  // const docSnap = getDoc(docRef);
-
-  // const querySnapshot = getDocs(collection(db, "cities"));
-  // querySnapshot.forEach((doc) => {
-  //   // doc.data() is never undefined for query doc snapshots
-  //   console.log(doc.id, " => ", doc.data());
-  // });
-
   // 게시물정보 가져오기
   const { post } = useSelector((state) => state.post);
   useEffect(() => {
