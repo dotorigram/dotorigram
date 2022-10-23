@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
 
 //가져오기 thunk
@@ -10,7 +10,10 @@ export const getPost = createAsyncThunk("post/getPost", async (_, thunkAPI) => {
     const postsCollectionRef = collection(db, "posts");
 
     // getDocs로 컬렉션안에 데이터 가져오기
-    const data = await getDocs(postsCollectionRef);
+    const data = await getDocs(
+      postsCollectionRef,
+      orderBy("timeStamp", "desc")
+    );
     console.log(data);
     const post = [];
 

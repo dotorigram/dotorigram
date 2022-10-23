@@ -20,6 +20,7 @@ const FeedContent = ({ post }) => {
           {post?.user}
         </div>
         <div>{post?.body}</div>
+        {/* <div>{post?.timeStamp}</div> */}
       </div>
     </div>
   );
