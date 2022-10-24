@@ -1,6 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+<<<<<<< Updated upstream
 import { collection, getDocs, orderBy } from "firebase/firestore";
+=======
+import { collection, getDocs } from "firebase/firestore";
+>>>>>>> Stashed changes
 import { db } from "../../../firebase/firebase";
 
 //가져오기 thunk
