@@ -1,17 +1,15 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-<<<<<<< Updated upstream
 import { collection, getDocs, orderBy } from "firebase/firestore";
-=======
-import { collection, getDocs } from "firebase/firestore";
->>>>>>> Stashed changes
-import { db } from "../../../firebase/firebase";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../../firebase/firebase';
+
 
 //가져오기 thunk
-export const getPost = createAsyncThunk("post/getPost", async (_, thunkAPI) => {
+export const getPost = createAsyncThunk('post/getPost', async (_, thunkAPI) => {
   try {
     //const { data } = await axios.get("http://localhost:3001/post");
-    const postsCollectionRef = collection(db, "posts");
+    const postsCollectionRef = collection(db, 'posts');
 
     // getDocs로 컬렉션안에 데이터 가져오기
     const data = await getDocs(
@@ -26,23 +24,28 @@ export const getPost = createAsyncThunk("post/getPost", async (_, thunkAPI) => {
     });
 
     return thunkAPI.fulfillWithValue(post);
+
+    // 더미데이터 연결
+    // const { data } = await axios.get('http://localhost:3001/post');
+    // const posts = [];
+    // // data.map((v) => {
+    // //   posts.unshift(v);
+    // // });
+    // return thunkAPI.fulfillWithValue(data.reverse());
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
   }
 });
 
 //추가하기 thunk
-export const addPost = createAsyncThunk(
-  "post/addPost",
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios.post("http://localhost:3001/post", payload);
-      return thunkAPI.fulfillWithValue(data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
+export const addPost = createAsyncThunk('post/addPost', async (payload, thunkAPI) => {
+  try {
+    const { data } = await axios.post('http://localhost:3001/post', payload);
+    return thunkAPI.fulfillWithValue(data);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
   }
-);
+});
 
 const initialState = {
   post: [],
@@ -51,7 +54,7 @@ const initialState = {
   isSuccess: false,
 };
 const postSlice = createSlice({
-  name: "post",
+  name: 'post',
   initialState,
   reducers: {
     clearPost: (state, action) => {
