@@ -3,9 +3,32 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getPost } from "../../redux/reducer/modules/postReducer";
 import { Grid } from "@mui/material";
+import {
+  getDownloadURL,
+  getStorage,
+  listAll,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
+import { useState } from "react";
 
 // import { useSelector } from 'react-redux';
 const ContentPhoto = ({ post }) => {
+  const storage = getStorage();
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageList, setImageList] = useState([]);
+  const imageListRef = ref(storage, "images/");
+
+  useEffect(() => {
+    listAll(imageListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageList((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);
+
   // const { post } = useSelector((state) => state.post);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,12 +42,18 @@ const ContentPhoto = ({ post }) => {
     // console.log(post);
     return (
       <div className="flex items-center">
-        <img
-          src={post?.img}
-          className="m-auto w-100 h-100"
-          alt=""
-          onClick={() => navigate("/postedcontent")}
-        />
+        {imageList.map((el) => {
+          return (
+            <img
+              key={el}
+              src={el}
+              className="m-auto w-100 h-100"
+              alt=""
+              onClick={() => navigate("/postedcontent")}
+            />
+          );
+        })}
+
         {/* <img src={require('../../static/img/feed_img.jpg')} className='w-100 h-100 m-auto' alt='' onClick={() => navigate('/postedcontent')} /> */}
       </div>
     );
@@ -38,7 +67,7 @@ const ContentPhoto = ({ post }) => {
             <div key={index}>
               <div
                 style={{
-                  backgroundImage: `url(${item.img})`,
+                  backgroundImage: `url({item.img})`,
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                 }}
