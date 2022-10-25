@@ -3,32 +3,32 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getPost } from "../../redux/reducer/modules/postReducer";
 import { Grid } from "@mui/material";
-import {
-  getDownloadURL,
-  getStorage,
-  listAll,
-  ref,
-  uploadBytes,
-} from "firebase/storage";
-import { useState } from "react";
+import { getStorage, ref } from "firebase/storage";
+
+const storage = getStorage();
+
+// Points to the root reference
+const storageRef = ref(storage);
+
+// Points to 'images'
+const imagesRef = ref(storageRef, "images");
+
+// Points to 'images/space.jpg'
+// Note that you can use variables to create child values
+const fileName = "space.jpg";
+const spaceRef = ref(imagesRef, fileName);
+
+// File path is 'images/space.jpg'
+const path = spaceRef.fullPath;
+
+// File name is 'space.jpg'
+const name = spaceRef.name;
+
+// Points to 'images'
+const imagesRefAgain = spaceRef.parent;
 
 // import { useSelector } from 'react-redux';
 const ContentPhoto = ({ post }) => {
-  const storage = getStorage();
-  const [imageUpload, setImageUpload] = useState(null);
-  const [imageList, setImageList] = useState([]);
-  const imageListRef = ref(storage, "images/");
-
-  useEffect(() => {
-    listAll(imageListRef).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageList((prev) => [...prev, url]);
-        });
-      });
-    });
-  }, []);
-
   // const { post } = useSelector((state) => state.post);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -42,18 +42,17 @@ const ContentPhoto = ({ post }) => {
     // console.log(post);
     return (
       <div className="flex items-center">
-        {imageList.map((el) => {
-          return (
-            <img
-              key={el}
-              src={el}
-              className="m-auto w-100 h-100"
-              alt=""
-              onClick={() => navigate("/postedcontent")}
-            />
-          );
-        })}
-
+        <img
+          src={
+            "https://firebasestorage.googleapis.com/v0/b/dotorigram-49dcf.appspot.com/o/Images%2F" +
+            "mix909AsJirOOLN_sunsplash.jpg" +
+            "1666682889109" +
+            "?alt=media"
+          }
+          className="m-auto w-100 h-100"
+          alt=""
+          onClick={() => navigate("/postedcontent")}
+        />
         {/* <img src={require('../../static/img/feed_img.jpg')} className='w-100 h-100 m-auto' alt='' onClick={() => navigate('/postedcontent')} /> */}
       </div>
     );
