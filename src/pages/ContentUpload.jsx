@@ -21,6 +21,7 @@ const storage = getStorage();
 function ContentUpload() {
   const fileRef = useRef();
   const [file, setFile] = useState("");
+  const [id, setId] = useState(0);
   const [previewURL, setPreviewURL] = useState("");
   const [preview, setPreview] = useState(null);
 
@@ -56,6 +57,7 @@ function ContentUpload() {
         user: `${user.user}`,
         body,
         timeStamp: serverTimestamp(),
+        id,
       });
       console.log(res); // res는 undefined입니다.
     } catch (e) {
@@ -89,10 +91,12 @@ function ContentUpload() {
         likeAmount: 0,
         user: `${user.user}`,
         body,
+        id: setId,
       })
     );
     setImg("");
     setBody("");
+    setId(id + 1);
     navigate("/");
   };
 
