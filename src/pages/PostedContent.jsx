@@ -1,4 +1,6 @@
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Avatar } from '@mui/material';
 import profile from '../static/img/profile.jpg';
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -7,13 +9,30 @@ import TopNavbar from '../components/main/TopNavbar';
 import BottomNavbar from '../components/main/BottomNavbar';
 
 function PostedContent() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const id = location.state.id;
+  // const { post } = useSelector((state) => state.post);
   return (
     <div>
       <TopNavbar />
       <div className='mx-auto max-w-470 py-12'>
         <div className='flex justify-around mx-3 mt-2'>
-          <Avatar src={profile} />
-          <div className='basis-1/2 mt-1'>yurimuahxx</div>
+          <Avatar
+            src={profile}
+            onClick={() => {
+              navigate('/userpage');
+            }}
+          />
+          <div
+            className='basis-1/2 mt-1'
+            onClick={() => {
+              navigate('/userpage');
+            }}
+          >
+            {id}
+          </div>
           <div className='flex justify-around basis-1/3'>
             <button className='basis-1/2 hover:text-blue-600'>수정</button>
             <button className='basis-1/2 hover:text-red-600'>삭제</button>

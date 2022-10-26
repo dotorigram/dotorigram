@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getPost } from '../../redux/reducer/modules/postReducer';
-import { Grid } from '@mui/material';
 
 // import { useSelector } from 'react-redux';
 const ContentPhoto = ({ post }) => {
@@ -24,7 +23,7 @@ const ContentPhoto = ({ post }) => {
       </div>
     );
   } else if (location.pathname === '/mypage') {
-    console.log(post);
+    // console.log(post);
     return (
       <div className='grid grid-cols-3 gap-5'>
         {post.map((item, index) => {
@@ -35,7 +34,7 @@ const ContentPhoto = ({ post }) => {
                 style={{ backgroundImage: `url(${item.img})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
                 className='w-40 h-40'
                 key={index}
-                onClick={() => navigate('/postedcontent')}
+                onClick={() => navigate('/postedcontent', { state: { id: post.user } })}
               ></div>
             </div>
           );
