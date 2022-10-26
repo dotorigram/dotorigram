@@ -31,11 +31,7 @@ const ContentPhoto = ({ post }) => {
           return (
             <div key={index}>
               <div
-                style={{
-                  backgroundImage: `url({item.img})`,
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
-                }}
+                style={{ backgroundImage: `url(${item.img})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
                 className='w-40 h-40'
                 key={index}
                 onClick={() => navigate('/postedcontent', { state: { id: post.user } })}
