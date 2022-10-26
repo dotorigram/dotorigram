@@ -19,6 +19,7 @@ function ContentUpload() {
         user: `${user.user}`,
         body,
         timeStamp: serverTimestamp(),
+        img,
       });
       console.log(res); // res는 undefined입니다.
     } catch (e) {

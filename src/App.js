@@ -46,10 +46,8 @@ function App() {
       <Route path='/contentupload' element={<ContentUpload />} />
       <Route path='/postedcontent' element={<PostedContent />} />
       <Route path='/commentsbox' element={<CommentsBox />} />
-      {/* <Route path='/mypage' element={<PrivateRoute authenticate={authenticate} />} /> */}
-      <Route path='/userpage/:id' element={<UserPage />} />
+      <Route path='/mypage' element={<PrivateRoute authenticate={authenticate} />} />
       <Route path='/userpage' element={<UserPage />} />
-      <Route path='/mypage' element={<Mypage />} />
     </Routes>
   );
 }

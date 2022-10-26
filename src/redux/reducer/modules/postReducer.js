@@ -7,27 +7,27 @@ import { db } from '../../../firebase/firebase';
 export const getPost = createAsyncThunk('post/getPost', async (_, thunkAPI) => {
   try {
     // const { data } = await axios.get("http://localhost:3001/post");
-    // const postsCollectionRef = collection(db, 'posts');
+    const postsCollectionRef = collection(db, 'posts');
 
     // // getDocs로 컬렉션안에 데이터 가져오기
-    // const data = await getDocs(postsCollectionRef);
-    // console.log(data);
-    // console.log(data.docs[0].id);
-    // const post = [];
+    const data = await getDocs(postsCollectionRef);
+    console.log(data);
+    console.log(data.docs[0].id);
+    const post = [];
 
-    // data.docs.map((doc) => {
-    //   post.push(doc.data());
-    // });
+    data.docs.map((doc) => {
+      post.push(doc.data());
+    });
 
-    // return thunkAPI.fulfillWithValue(post);
+    return thunkAPI.fulfillWithValue(post);
 
     // 더미데이터 연결
-    const { data } = await axios.get('http://localhost:3001/post');
-    const posts = [];
-    data.map((v) => {
-      posts.unshift(v);
-    });
-    return thunkAPI.fulfillWithValue(data.reverse());
+    //   const { data } = await axios.get('http://localhost:3001/post');
+    //   const posts = [];
+    //   data.map((v) => {
+    //     posts.unshift(v);
+    //   });
+    //   return thunkAPI.fulfillWithValue(data.reverse());
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
   }
