@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import ContentUpload from './pages/ContentUpload';
 import PostedContent from './pages/PostedContent';
 import Mypage from './pages/Mypage';
+import UserPage from './pages/UserPage';
 import CommentsBox from './pages/CommentsBox';
 import PrivateRoute from './route/PrivateRoute';
 // 파이어베이서 파일에서 import 해온 db
@@ -29,7 +30,6 @@ function App() {
       const data = await getDocs(postsCollectionRef);
       console.log(data);
       const post = [];
-
       data.docs.map((doc) => {
         post.push(doc.data());
       });
@@ -47,6 +47,7 @@ function App() {
       <Route path='/postedcontent' element={<PostedContent />} />
       <Route path='/commentsbox' element={<CommentsBox />} />
       <Route path='/mypage' element={<PrivateRoute authenticate={authenticate} />} />
+      <Route path='/userpage' element={<UserPage />} />
     </Routes>
   );
 }

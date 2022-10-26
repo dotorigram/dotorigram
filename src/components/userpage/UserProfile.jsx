@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileInfo from './ProfileInfo';
+import UserProfileInfo from './UserProfileInfo';
 import Avatar from '@mui/material/Avatar';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { useSelector } from 'react-redux';
@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 
 //마이페이지 프로필 전체
 
-const Profile = ({ post }) => {
+const UserProfile = ({ post }) => {
   const user = useSelector((state) => state.user);
   // const postId = post.
   const location = useLocation();
@@ -35,10 +35,10 @@ const Profile = ({ post }) => {
             </div>
           </div>
         </div>
-        <ProfileInfo />
+        <UserProfileInfo />
       </div>
     </div>
   );
 };
 
-export default Profile;
+export default UserProfile;
